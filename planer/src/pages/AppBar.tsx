@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
-import { styled, alpha } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
-import { Box, ButtonBase, Grid, Stack } from "@mui/material";
+import { Grid } from "@mui/material";
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { Button } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
 
 //styling für fie App Bar
 const StyledAppBar = styled(AppBar)(({theme}) => ({
@@ -19,7 +17,7 @@ const StyledAppBar = styled(AppBar)(({theme}) => ({
 }))
 
 // styling für die buttons
-const StyledButton = styled(Button)(({theme}) => ({
+const StyledButton = styled(Button)(({}) => ({
   boxShadow: 'none',
   textTransform: 'none',
   fontSize: 20,

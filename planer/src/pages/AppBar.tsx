@@ -4,6 +4,8 @@ import { Grid } from "@mui/material";
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { Button } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+
 
 //styling für fie App Bar
 const StyledAppBar = styled(AppBar)(({theme}) => ({
@@ -46,38 +48,37 @@ const StyledButton = styled(Button)(({}) => ({
 
 export default function Appbar() {
   
-  return (
-      <StyledAppBar position="fixed" color="primary">
-        <Toolbar>
-            <Typography
-                variant="h5"
-                noWrap
-                component="div"
-                sx={{ flexGrow: 1, alignSelf: 'flex-end' }}
-            >
+  const navigate = useNavigate();
 
-            <Grid container spacing={2}
-                alignItems="center"
-                columns={{ xs: 5}}>
-                <Grid item xs={1}>
-                  <StyledButton href='/planer/home'>HOME</StyledButton>
-                </Grid>
-                <Grid item xs={1}>
-                  <StyledButton href='/work'>WORK</StyledButton>
-                </Grid>
-                <Grid item xs={1}>
-                  <StyledButton href='/school'>SCHOOL</StyledButton>
-                </Grid>
-                <Grid item xs={1}>
-                  <StyledButton href='/personal'>PERSONAL</StyledButton>
-                </Grid>
-                <Grid item xs={1}>
-                    <StyledButton href='/contact'>CONTACT</StyledButton>
-                </Grid>
-            </Grid>
-          </Typography>
-        </Toolbar>
-      </StyledAppBar>
-    
+  return (
+    <StyledAppBar position="fixed" color="primary">
+      <Toolbar>
+        <Typography
+          variant="h5"
+          noWrap
+          component="div"
+          sx={{ flexGrow: 1, alignSelf: 'flex-end' }}
+        >
+          My App
+        </Typography>
+        <Grid container spacing={2} alignItems="center" columns={{ xs: 5 }}>
+          <Grid item xs={1}>
+            <StyledButton onClick={() => navigate('/home')}>HOME</StyledButton>
+          </Grid>
+          <Grid item xs={1}>
+            <StyledButton onClick={() => navigate('/work')}>WORK</StyledButton>
+          </Grid>
+          <Grid item xs={1}>
+            <StyledButton onClick={() => navigate('/school')}>SCHOOL</StyledButton>
+          </Grid>
+          <Grid item xs={1}>
+            <StyledButton onClick={() => navigate('/personal')}>PERSONAL</StyledButton>
+          </Grid>
+          <Grid item xs={1}>
+            <StyledButton onClick={() => navigate('/contact')}>CONTACT</StyledButton>
+          </Grid>
+        </Grid>
+      </Toolbar>
+    </StyledAppBar>
   );
-}
+};

@@ -60,7 +60,7 @@ export default function Appbar() {
                 alignItems="center"
                 columns={{ xs: 5}}>
                 <Grid item xs={1}>
-                  <StyledButton href='/home'>HOME</StyledButton>
+                  <StyledButton href='/planer/home'>HOME</StyledButton>
                 </Grid>
                 <Grid item xs={1}>
                   <StyledButton href='/work'>WORK</StyledButton>

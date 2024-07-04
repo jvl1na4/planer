@@ -5,21 +5,17 @@ import PersonalPage from './pages/personal/PersonalPage';
 import WorkPage from './pages/work/WorkPage';
 import SchoolPage from './pages/school/SchoolPage';
 
-
 function App() {
-
   return (
-    <>
-      <Routes>
-        <Route path="/planer/" element={<HomePage />} />
-        <Route path="/planer/home" element={<HomePage />} />
-        <Route path="/planer/school" element={<SchoolPage />} />
-        <Route path="/planer/work" element={<WorkPage />} />
-        <Route path="/planer/personal" element={<PersonalPage />} />
-        <Route path="*" element={<Navigate replace to="/planer/home" />} />
-      </Routes>
-    </>
-  )
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/home" element={<HomePage />} />
+      <Route path="/school" element={<SchoolPage />} />
+      <Route path="/work" element={<WorkPage />} />
+      <Route path="/personal" element={<PersonalPage />} />
+      <Route path="*" element={<Navigate replace to="/home" />} />
+    </Routes>
+  );
 }
 
-export default App
+export default App;

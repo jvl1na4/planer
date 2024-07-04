@@ -59,7 +59,6 @@ export default function Appbar() {
           component="div"
           sx={{ flexGrow: 1, alignSelf: 'flex-end' }}
         >
-          My App
         </Typography>
         <Grid container spacing={2} alignItems="center" columns={{ xs: 5 }}>
           <Grid item xs={1}>

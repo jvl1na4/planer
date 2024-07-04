@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="refresh" content="0;url=/" />
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const redirectPath = window.location.pathname.substr(1);
+        window.location.replace(`/${redirectPath}`);
+      });
+    </script>
+  </head>
+  <body></body>
+</html>

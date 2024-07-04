@@ -60,19 +60,19 @@ export default function Appbar() {
                 alignItems="center"
                 columns={{ xs: 5}}>
                 <Grid item xs={1}>
-                  <StyledButton href='home'>HOME</StyledButton>
+                  <StyledButton href='/home'>HOME</StyledButton>
                 </Grid>
                 <Grid item xs={1}>
-                  <StyledButton href='work'>WORK</StyledButton>
+                  <StyledButton href='/work'>WORK</StyledButton>
                 </Grid>
                 <Grid item xs={1}>
-                  <StyledButton href='school'>SCHOOL</StyledButton>
+                  <StyledButton href='/school'>SCHOOL</StyledButton>
                 </Grid>
                 <Grid item xs={1}>
-                  <StyledButton href='personal'>PERSONAL</StyledButton>
+                  <StyledButton href='/personal'>PERSONAL</StyledButton>
                 </Grid>
                 <Grid item xs={1}>
-                    <StyledButton href='contact'>CONTACT</StyledButton>
+                    <StyledButton href='/contact'>CONTACT</StyledButton>
                 </Grid>
             </Grid>
           </Typography>

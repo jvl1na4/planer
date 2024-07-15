@@ -3,6 +3,8 @@ import Appbar from "../AppBar";
 import '/src/App.css';
 import Weather from "./WeatherCard";
 import CurrentDateWidget from "./DateCard";
+import homepageImage from './homepageImage.jpeg';
+import ToDoList from "./ToDoList";
 
 export default function HomePage() {
     
@@ -19,13 +21,14 @@ export default function HomePage() {
                     <Grid item sm={6}>   
                         <CurrentDateWidget />            
                     </Grid>
-                    <Grid item sm={4}>  
+                    <Grid item sm={3}>  
                          <Weather />
+                         <img src={homepageImage} alt="meow" style={{ width: '100%', paddingTop: '20px' }}/>
                     </Grid>
                     <Grid item sm={4}>  
-                         <Weather />
+                         <ToDoList />
                     </Grid>
-                    <Grid item sm={4}>  
+                    <Grid item sm={5}>  
                          <Weather />
                     </Grid>
                 </Grid>

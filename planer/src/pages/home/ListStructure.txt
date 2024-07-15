@@ -12,33 +12,25 @@ import FolderIcon from '@mui/icons-material/Folder';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useState } from 'react';
 
+function generate(element: React.ReactElement) {
+  return [0, 1, 2].map((value) =>
+    React.cloneElement(element, {
+      key: value,
+    }),
+  );
+}
+
 const Demo = styled('div')(({ theme }) => ({
   backgroundColor: theme.palette.background.paper,
 }));
 
-interface ListItemState {
-  id: number;
-  name: string;
-  compleateBy: date; 
-  checked: boolean;
-}
-
 export default function ToDoList() {
-  const initialItems: ListItemState[] = [
-    { id: 0, checked: false },
-    { id: 1, checked: false },
-    { id: 2, checked: false },
-  ];
+  const [checked, setChecked] = useState(false);
 
-  const [items, setItems] = useState<ListItemState[]>(initialItems);
-
-  const handleCheckboxChange = (id: number) => (event: React.ChangeEvent<HTMLInputElement>) => {
-    const updatedItems = items.map(item =>
-      item.id === id ? { ...item, checked: event.target.checked } : item
-    );
-    setItems(updatedItems);
-
-    if (event.target.checked) {
+  const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const isChecked = event.target.checked;
+    setChecked(isChecked);
+    if (isChecked) {
       console.log("okay");
     } else {
       console.log("nou");
@@ -48,14 +40,13 @@ export default function ToDoList() {
   return (
     <Box sx={{ flexGrow: 1, maxWidth: 752 }}>
       <List>
-        {items.map(item => (
+        {generate(
           <ListItem
-            key={item.id}
             secondaryAction={
               <>
                 <Checkbox
-                  checked={item.checked}
-                  onChange={handleCheckboxChange(item.id)}
+                  checked={checked}
+                  onChange={handleCheckboxChange}
                 />
                 <IconButton edge="end" aria-label="delete">
                   <DeleteIcon />
@@ -73,9 +64,8 @@ export default function ToDoList() {
               secondary="Secondary text"
             />
           </ListItem>
-        ))}
+        )}
       </List>
     </Box>
   );
 }
-

@@ -6,8 +6,11 @@ import WorkPage from './pages/work/WorkPage';
 import SchoolPage from './pages/school/SchoolPage';
 import Loginpage from './pages/login/Login';
 import ContactPage from './pages/contact/ContactPage';
+import useAuthCheck from './pages/useAutoCheck';
 
-function App() {
+const App: React.FC = () => {
+  useAuthCheck();
+  
   return (
     <Routes>
       <Route path="/" element={<Navigate replace to="/home" />} />

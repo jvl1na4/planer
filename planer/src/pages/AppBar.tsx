@@ -46,9 +46,15 @@ const StyledButton = styled(Button)(({}) => ({
 }));
 
 
+
 export default function Appbar() {
   
   const navigate = useNavigate();
+
+  const handleClearKey = () => {
+    localStorage.removeItem('hashedKey');
+    navigate('/login');
+  };
 
   return (
     <StyledAppBar position="fixed" color="primary">
@@ -60,7 +66,7 @@ export default function Appbar() {
           sx={{ flexGrow: 1, alignSelf: 'flex-end' }}
         >
         </Typography>
-        <Grid container spacing={2} alignItems="center" columns={{ xs: 5 }}>
+        <Grid container spacing={2} alignItems="center" columns={{ xs: 6 }}>
           <Grid item xs={1}>
             <StyledButton onClick={() => navigate('/home')}>HOME</StyledButton>
           </Grid>
@@ -75,6 +81,9 @@ export default function Appbar() {
           </Grid>
           <Grid item xs={1}>
             <StyledButton onClick={() => navigate('/contact')}>CONTACT</StyledButton>
+          </Grid>
+          <Grid item xs={1}>
+            <StyledButton onClick={handleClearKey}> LOGOUT </StyledButton>
           </Grid>
         </Grid>
       </Toolbar>

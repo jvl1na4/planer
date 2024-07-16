@@ -19,15 +19,15 @@ const Demo = styled('div')(({ theme }) => ({
 interface ListItemState {
   id: number;
   name: string;
-  compleateBy: date; 
+  completeBy: Date; 
   checked: boolean;
 }
 
 export default function ToDoList() {
   const initialItems: ListItemState[] = [
-    { id: 0, checked: false },
-    { id: 1, checked: false },
-    { id: 2, checked: false },
+    { id: 0, name: "eat chicken nuggets", completeBy: new Date('2024-11-11'), checked: false },
+    { id: 1, name: "buy a kitten", completeBy: new Date('2024-11-11'), checked: false },
+    { id: 2, name: "take a plane to the usa", completeBy: new Date('2001-09-11'), checked: false },
   ];
 
   const [items, setItems] = useState<ListItemState[]>(initialItems);
@@ -69,9 +69,9 @@ export default function ToDoList() {
               </Avatar>
             </ListItemAvatar>
             <ListItemText
-              primary="Single-line item"
-              secondary="Secondary text"
-            />
+              primary={item.name}
+              secondary={item.completeBy.toDateString()}
+            />  
           </ListItem>
         ))}
       </List>

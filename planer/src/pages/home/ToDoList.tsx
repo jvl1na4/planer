@@ -1,19 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import { Box, List, ListItem, ListItemText, Checkbox, IconButton } from '@mui/material';
+import { Box, List, ListItem, ListItemText, Checkbox, IconButton, FormControlLabel } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import axios from 'axios';
 
 interface ListItemState {
   id: number;
   name: string;
-  compleateBy: Date | string | null;
+  compleateBy: Date | null;
   checked: boolean;
+  userKey: string;
+  categoryId: number;
+  subCategoryId: number;
 }
 
 const initialItems: ListItemState[] = [];
 
 export default function ToDoList() {
   const [items, setItems] = useState<ListItemState[]>(initialItems);
+  const [hideFinished, setHideFinished] = useState(false);
 
   useEffect(() => {
     const fetchItems = async () => {
@@ -29,7 +33,10 @@ export default function ToDoList() {
           id: item.id,
           name: item.name,
           compleateBy: item.finishBy ? new Date(item.finishBy) : null,
-          checked: item.finished
+          checked: item.finished,
+          userKey: item.userKey,
+          categoryId: item.categoryId,
+          subCategoryId: item.subCategoryId,
         }));
         setItems(fetchedItems);
       } catch (error) {
@@ -53,44 +60,65 @@ export default function ToDoList() {
           ...itemToUpdate,
           finishBy: itemToUpdate.compleateBy ? new Date(itemToUpdate.compleateBy).toISOString() : null,
           finished: event.target.checked,
-          userKey: localStorage.getItem('hashedKey'),  // Ensure the userKey is included
-          categoryId: 1,  // Adjust these as per your data structure
-          subCategoryId: 1  // Adjust these as per your data structure
+          userKey: localStorage.getItem('hashedKey'),
+          categoryId: itemToUpdate.categoryId,
+          subCategoryId: itemToUpdate.subCategoryId,
         });
         console.log("Item updated successfully");
       } catch (error) {
         console.error('Error updating item:', error);
       }
     }
+  };
 
-    if (event.target.checked) {
-      console.log("okay");
-    } else {
-      console.log("nou");
+  const deletetask = async (id: number) => {
+    try {
+      await axios.delete(`http://localhost:8080/api/tasks/${id}`);
+      setItems(items.filter(item => item.id !== id));
+      console.log("Item deleted successfully");
+    } catch (error) {
+      console.error('Error deleting item:', error);
     }
   };
 
+  const handleHideFinishedChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setHideFinished(event.target.checked);
+  };
+
   return (
-    <Box sx={{ flexGrow: 1, maxWidth: 752 }}>
+    <Box sx={{ flexGrow: 1, maxWidth: 752, background: '#4D4344' }}>
+      <FormControlLabel
+        control={
+          <Checkbox
+            checked={hideFinished}
+            onChange={handleHideFinishedChange}
+            name="hideFinished"
+            color="primary"
+          />
+        }
+        label="Hide Finished Items"
+      />
       <List>
-        {items.map(item => (
-          <ListItem key={item.id} secondaryAction={
-            <>
-              <Checkbox
-                checked={item.checked}
-                onChange={handleCheckboxChange(item.id)}
+        {items
+          .filter(item => !hideFinished || !item.checked)
+          .map(item => (
+            <ListItem key={item.id} sx={{ background: '#40393A' }} secondaryAction={
+              <>
+                <Checkbox
+                  checked={item.checked}
+                  onChange={handleCheckboxChange(item.id)}
+                />
+                <IconButton edge="end" aria-label="delete" onClick={() => deletetask(item.id)}>
+                  <DeleteIcon />
+                </IconButton>
+              </>
+            }>
+              <ListItemText
+                primary={item.name}
+                secondary={item.compleateBy ? new Date(item.compleateBy).toDateString() : 'No date'}
               />
-              <IconButton edge="end" aria-label="delete">
-                <DeleteIcon />
-              </IconButton>
-            </>
-          }>
-            <ListItemText
-              primary={item.name}
-              secondary={item.compleateBy ? new Date(item.compleateBy).toDateString() : 'No date'}
-            />
-          </ListItem>
-        ))}
+            </ListItem>
+          ))}
       </List>
     </Box>
   );

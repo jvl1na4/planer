@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextField, Box, Card, Button, Typography, CardContent, CardActions, Stack } from '@mui/material';
+import { TextField, Box, Card, Button, Typography, CardContent, CardActions, Stack, styled, getOverlayAlpha } from '@mui/material';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -8,6 +8,33 @@ const initialValues = {
   email: '',
   password: '',
 };
+
+const StyledButton = styled(Button)(({}) => ({
+  boxShadow: 'none',
+  textTransform: 'none',
+  fontSize: 20,
+  padding: '6px 12px',
+  lineHeight: 1.5,
+  backgroundColor: '#51202C',
+  color: '#AAAAAA',
+  fontFamily: [
+    '-apple-system',
+    'BlinkMacSystemFont',
+    '"Segoe UI"',
+    'Roboto',
+    '"Helvetica Neue"',
+    'Arial',
+    'sans-serif',
+    '"Apple Color Emoji"',
+    '"Segoe UI Emoji"',
+    '"Segoe UI Symbol"',
+  ].join(','),
+  '&:hover': {
+    backgroundColor: '#1F090C',
+    boxShadow: 'none',
+  }
+}));
+
 
 export default function Loginpage() {
   let navigate = useNavigate();
@@ -53,7 +80,7 @@ export default function Loginpage() {
           height: '100vh',
         }}
       >
-      <Card sx={{ padding: '20px', minWidth: '300px' }}>
+      <Card sx={{ padding: '20px', minWidth: '300px', background: '#B19595' }}>
         <Typography variant="h4" gutterBottom>Login</Typography>
         <Formik
           initialValues={initialValues}
@@ -77,16 +104,16 @@ export default function Loginpage() {
             <Form>
               <Stack direction="column" spacing={2}>
                 <label htmlFor="email">E-Mail:</label>
-                <Field as={TextField} type="email" name="email" variant="outlined" fullWidth />
+                <Field as={TextField} type="email" name="email" variant="outlined" fullWidth sx={{background: '#D7B3B3', }} />
                 <ErrorMessage name="email" component="div" style={{ color: 'red' }} />
 
                 <label htmlFor="password">Password:</label>
-                <Field as={TextField} type="password" name="password" variant="outlined" fullWidth />
+                <Field as={TextField} type="password" name="password" variant="outlined" fullWidth sx={{background: '#D7B3B3'}} />
                 <ErrorMessage name="password" component="div" style={{ color: 'red' }} />
 
-                <Button type="submit" variant="contained" color="primary" disabled={isSubmitting}>
+                <StyledButton type="submit" variant="contained" color="primary" disabled={isSubmitting}>
                   Login
-                </Button>
+                </StyledButton>
               </Stack>
             </Form>
           )}

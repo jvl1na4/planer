@@ -102,7 +102,7 @@ export default function ToDoList() {
         {items
           .filter(item => !hideFinished || !item.checked)
           .map(item => (
-            <ListItem key={item.id} sx={{ background: '#40393A' }} secondaryAction={
+            <ListItem key={item.id} sx={{ background: '#40393A', marginBottom: '5px' }} secondaryAction={
               <>
                 <Checkbox
                   checked={item.checked}

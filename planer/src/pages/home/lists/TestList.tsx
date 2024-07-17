@@ -4,15 +4,15 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import axios from 'axios';
 import AddIcon from '@mui/icons-material/Add';
 import { useNavigate } from 'react-router-dom';
-import { Description } from '@mui/icons-material';
 
 interface ListItemState {
   id: number;
   name: string;
   date: Date | null;
+  subject: String;
   userKey: string;
   categoryId: number;
-  description: String;
+  
 }
 
 const StyledCheckbox = styled(Checkbox)(({}) => ({
@@ -23,7 +23,7 @@ const StyledCheckbox = styled(Checkbox)(({}) => ({
   }));
 const initialItems: ListItemState[] = [];
 
-export default function EventList() {
+export default function TestList() {
   const [items, setItems] = useState<ListItemState[]>(initialItems);
   const [hidePastEvents, setHidePastEvents] = useState(true);
 
@@ -36,14 +36,14 @@ export default function EventList() {
       }
 
       try {
-        const response = await axios.get(`http://localhost:8080/api/events/userKey/${hashedKey}`);
+        const response = await axios.get(`http://localhost:8080/api/tests/userKey/${hashedKey}`);
         const fetchedItems = response.data.map((item: any) => ({
           id: item.id,
           name: item.name,
+          subject: item.subject,
           date: item.date ? new Date(item.date) : null,
           userKey: item.userKey,
           categoryId: item.categoryId,
-          description: item.description,
         }));
         setItems(fetchedItems);
       } catch (error) {
@@ -58,7 +58,7 @@ export default function EventList() {
 
   const deleteEvent = async (id: number) => {
     try {
-      await axios.delete(`http://localhost:8080/api/events/${id}`);
+      await axios.delete(`http://localhost:8080/api/tests/${id}`);
       setItems(items.filter(item => item.id !== id));
       console.log("Item deleted successfully");
     } catch (error) {
@@ -86,9 +86,9 @@ export default function EventList() {
             color="primary"
           />
         }
-        label="Hide Past Events"
+        label="Hide Past Tests"
       />
-      <IconButton edge="end" aria-label="add" onClick={() => navigate('/newObject/NewEvent')}>
+      <IconButton edge="end" aria-label="add" onClick={() => navigate('/newObject/NewTest')}>
         <AddIcon />
       </IconButton>
       <List>
@@ -102,7 +102,7 @@ export default function EventList() {
             }>
             <ListItemText
                 primary={item.name}
-                secondary={item.date ? item.date.toDateString() : 'No date'}
+                secondary={item.date ? item.date.toDateString() + ' - ' + item.subject : item.subject}
               />
             </ListItem>
           ))}

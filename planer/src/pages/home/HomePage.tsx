@@ -9,6 +9,7 @@ import AssighmentList from "./lists/AssighnementList";
 import EventList from "./lists/EventList";
 import ProjectList from "./lists/ProjectList";
 import TaskLists from "./lists/TaskLists";
+import EventAndTest from "./lists/EventAndTest";
 
 export default function HomePage() {
     
@@ -33,7 +34,7 @@ export default function HomePage() {
                          <TaskLists />
                     </Grid>
                     <Grid item sm={5}>  
-                         <EventList />
+                         <EventAndTest />
                     </Grid>
                 </Grid>
             </Box>

@@ -26,7 +26,7 @@ const StyledCheckbox = styled(Checkbox)(({}) => ({
   
 export default function ToDoList() {
   const [items, setItems] = useState<ListItemState[]>(initialItems);
-  const [hideFinished, setHideFinished] = useState(false);
+  const [hideFinished, setHideFinished] = useState(true);
 
   useEffect(() => {
     const fetchItems = async () => {

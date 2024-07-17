@@ -26,7 +26,7 @@ const initialItems: ListItemState[] = [];
 
 export default function AssighmentList() {
   const [items, setItems] = useState<ListItemState[]>(initialItems);
-  const [hideFinished, setHideFinished] = useState(false);
+  const [hideFinished, setHideFinished] = useState(true);
 
   useEffect(() => {
     const fetchItems = async () => {

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Box, List, ListItem, ListItemText, Checkbox, IconButton, FormControlLabel } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import axios from 'axios';
+import AddIcon from '@mui/icons-material/Add';
 
 interface ListItemState {
   id: number;
@@ -98,6 +99,9 @@ export default function ToDoList() {
         }
         label="Hide Finished Items"
       />
+      <IconButton edge="end" aria-label="delete" onClick={() => deletetask(item.id)}>
+        <AddIcon />
+      </IconButton>
       <List>
         {items
           .filter(item => !hideFinished || !item.checked)

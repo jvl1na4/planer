@@ -1,8 +1,5 @@
 import { Box, Grid, Typography } from "@mui/material";
 import Appbar from "../AppBar";
-import CurrentDateWidget from "../home/DateCard";
-import ToDoList from "../home/ToDoList";
-import Weather from "../home/WeatherCard";
 import '/src/App.css';
 
 export default function ContactPage() {

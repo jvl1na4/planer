@@ -4,7 +4,11 @@ import '/src/App.css';
 import Weather from "./WeatherCard";
 import CurrentDateWidget from "./DateCard";
 import homepageImage from './homepageImage.jpeg';
-import ToDoList from "./ToDoList";
+import ToDoList from "./lists/ToDoList";
+import AssighmentList from "./lists/AssighnementList";
+import EventList from "./lists/EventList";
+import ProjectList from "./lists/ProjectList";
+import TaskLists from "./lists/TaskLists";
 
 export default function HomePage() {
     
@@ -26,10 +30,10 @@ export default function HomePage() {
                          <img src={homepageImage} alt="meow" style={{ width: '100%', paddingTop: '20px' }}/>
                     </Grid>
                     <Grid item sm={4}>  
-                         <ToDoList />
+                         <TaskLists />
                     </Grid>
                     <Grid item sm={5}>  
-                         <Weather />
+                         <EventList />
                     </Grid>
                 </Grid>
             </Box>

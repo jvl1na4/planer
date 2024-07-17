@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Box, List, ListItem, ListItemText, Checkbox, IconButton, FormControlLabel } from '@mui/material';
+import { Box, List, ListItem, ListItemText, Checkbox, IconButton, FormControlLabel, styled } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import axios from 'axios';
 import AddIcon from '@mui/icons-material/Add';
+import { useNavigate } from 'react-router-dom';
 
 interface ListItemState {
   id: number;
@@ -14,9 +15,16 @@ interface ListItemState {
   subCategoryId: number;
 }
 
+const StyledCheckbox = styled(Checkbox)(({}) => ({
+    color: '#1D1A1B',
+    '&.Mui-checked': {
+      color: '#1D1A1B',
+    },
+    }));
+    
 const initialItems: ListItemState[] = [];
 
-export default function ToDoList() {
+export default function ProjectList() {
   const [items, setItems] = useState<ListItemState[]>(initialItems);
   const [hideFinished, setHideFinished] = useState(false);
 
@@ -29,7 +37,7 @@ export default function ToDoList() {
       }
 
       try {
-        const response = await axios.get(`http://localhost:8080/api/tasks/userKey/${hashedKey}/subCategoryId/1`);
+        const response = await axios.get(`http://localhost:8080/api/tasks/userKey/${hashedKey}/subCategoryId/3`);
         const fetchedItems = response.data.map((item: any) => ({
           id: item.id,
           name: item.name,
@@ -47,6 +55,8 @@ export default function ToDoList() {
 
     fetchItems();
   }, []);
+
+  let navigate = useNavigate();
 
   const handleCheckboxChange = (id: number) => async (event: React.ChangeEvent<HTMLInputElement>) => {
     const updatedItems = items.map(item =>
@@ -90,16 +100,16 @@ export default function ToDoList() {
     <Box sx={{ flexGrow: 1, maxWidth: 752, background: '#4D4344' }}>
       <FormControlLabel
         control={
-          <Checkbox
+          <StyledCheckbox
             checked={hideFinished}
             onChange={handleHideFinishedChange}
             name="hideFinished"
             color="primary"
           />
         }
-        label="Hide Finished Items"
+        label="Hide Finished Projects"
       />
-      <IconButton edge="end" aria-label="delete" onClick={() => deletetask(item.id)}>
+      <IconButton edge="end" aria-label="delete" onClick={() => navigate('/newObject/NewProject')}>
         <AddIcon />
       </IconButton>
       <List>

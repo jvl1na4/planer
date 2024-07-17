@@ -2,6 +2,7 @@ import { Box, Button, Card, Grid, Stack, styled } from "@mui/material";
 import Appbar from "../AppBar";
 import '/src/App.css';
 import { useNavigate } from "react-router-dom";
+import jerry from './jerry.png';
 
 export default function NewObject() {
     
@@ -44,7 +45,14 @@ export default function NewObject() {
                 }}
             >
             <Card sx={{ padding: '20px', minWidth: '300px', background: '#B19595' }}>
-                <Stack direction="column" spacing={5}>
+                <Stack direction="column" spacing={3}>
+                    <Stack direction="row" spacing={3} >
+                        <img src={jerry} alt="meow" style={{ width: '15%', paddingTop: '0px' }}/>
+                        <Card sx={{width: '100%', alignContent: 'center', background: '#B19595', margin: '0px'}} > 
+                            <p>what do you want to create?</p>
+                        </Card>
+                    </Stack>
+                    
                     <StyledButton onClick={() => navigate('/newObject/NewTest')}>Add New Test</StyledButton>
                     <StyledButton onClick={() => navigate('/newObject/NewEvent')}>Add New Event</StyledButton>
                     <StyledButton onClick={() => navigate('/newObject/NewToDo')}>Add New To-Do</StyledButton>

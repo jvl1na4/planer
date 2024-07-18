@@ -119,6 +119,16 @@ export default function Loginpage() {
           )}
         </Formik>
       </Card>
+      <Card 
+        sx={{ padding: '20px', width: '200px', height: '320px', marginLeft: '10px', background: '#B19595' }}>
+        <Typography sx={{marginTop: '20px'}}>
+          if you want to use this, you need to have the database installed locally, 
+          to get the database dm me (or text me) and i shall send you instructions :D
+        </Typography>
+        <Typography sx={{marginTop: '30px'}}>
+          discord: ratsarcool / rats
+        </Typography>
+      </Card>
     </Box>
   );
 }

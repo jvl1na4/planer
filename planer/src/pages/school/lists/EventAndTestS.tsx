@@ -1,9 +1,8 @@
 import { Box, Paper } from '@mui/material';
-import AssighmentList from './AssighnementList';
-import ProjectList from './ProjectList';
-import ToDoList from './ToDoList';
+import EventListS from './EventListS';
+import TestListS from './TestListS';
 
-export default function TaskLists() {
+export default function EventAndTestS() {
   return (
     <Box
       sx={{
@@ -11,14 +10,14 @@ export default function TaskLists() {
         bgcolor: '#4D4344',
         position: 'relative',
         overflow: 'auto',
-        maxHeight: 685,
+        height: 400,
+        maxHeight: 400,
         '& ul': { padding: 0 },
       }}
       
     >
-      <ToDoList />
-      <AssighmentList />
-      <ProjectList />
+      <EventListS />
+      <TestListS />
     </Box>
   );
 }

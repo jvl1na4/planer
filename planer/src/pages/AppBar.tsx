@@ -12,9 +12,10 @@ const StyledAppBar = styled(AppBar)(({theme}) => ({
     backgroundColor: '#7B3445',
     boxShadow: 'none',
     paddingTop: theme.spacing(1),
+    alignContent: 'center',
     paddingBottom: theme.spacing(2),
     '@media all': {
-      minHeight: 128,
+      minHeight: 113,
     },
 }))
 
@@ -66,7 +67,7 @@ export default function Appbar() {
           sx={{ flexGrow: 1, alignSelf: 'flex-end' }}
         >
         </Typography>
-        <Grid container spacing={2} alignItems="center" columns={{ xs: 6 }}>
+        <Grid container spacing={2} columns={{ xs: 6 }}>
           <Grid item xs={1}>
             <StyledButton onClick={() => navigate('/home')}>HOME</StyledButton>
           </Grid>

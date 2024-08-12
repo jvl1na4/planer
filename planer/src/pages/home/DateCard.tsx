@@ -29,7 +29,7 @@ const CurrentDateWidget: React.FC = () => {
         borderRadius: '0px', 
         textAlign: 'center',
         width: '100%', 
-        height: '100%', 
+        height: '97%', 
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -37,15 +37,15 @@ const CurrentDateWidget: React.FC = () => {
     >
       <Grid container alignItems="center" justifyContent="center">
         <Grid item xs={5} sx={{ textAlign: 'center', padding: '10px' }}>
-          <Typography variant="body1" component="div" sx={{ fontSize: '40px' }}>
+          <Typography variant="body1" component="div" sx={{ fontSize: '250%' }}>
             {dayOfWeek.toLowerCase()}
           </Typography>
-          <Typography variant="body1" component="div" sx={{ fontSize: '40px' }}>
+          <Typography variant="body1" component="div" sx={{ fontSize: '250%' }}>
             {month.toLowerCase()} {day}
           </Typography>
         </Grid>
         <Grid item xs={7} sx={{ textAlign: 'center', padding: '10px' }}>
-          <Typography variant="h3" component="div" sx={{ fontSize: '75px' }}>
+          <Typography variant="h3" component="div" sx={{ fontSize: '500%' }}>
             KW {weekNumber < 10 ? '0' + weekNumber : weekNumber}
           </Typography>
         </Grid>
